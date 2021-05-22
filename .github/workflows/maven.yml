@@ -20,3 +20,18 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn -B package --file pom.xml -DskipTests=true
+    - run: mkdir staging && cp target/VulnIQSecurityScanner-Terzi-*.zip staging
+    - name: Set Release version env variable
+      run: |
+        echo "TERZI_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: staging
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: staging/VulnIQSecurityScanner-Terzi-${{ env.TERZI_VERSION }}.zip
+        tag_name: ${{ env.TERZI_VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd      http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+  <generator>
+    <oval:schema_version>5.10.1</oval:schema_version>
+    <oval:timestamp>2011-04-01T18:07:26-04:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+  <definitions>
+    <definition class="miscellaneous" id="oval:org.mitre.oval.test:def:449" version="2">
+      <metadata>
+        <title>Evaluate to true if the linux-def:family_test is properly supported</title>
+        <description>This definition is intended to evalutate to true if the interpreter properly supports the linux-def:rpmverifyfile_test and all of its valid operations.</description>
+      </metadata>
+      <notes>
+        <note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</note>
+      </notes>
+      <criteria operator="AND">
+        <criterion comment="Test verifying all files in a package." test_ref="oval:org.mitre.oval.test:tst:1531"/>
+        <criterion comment="Test skipping a verification using a behavior." test_ref="oval:org.mitre.oval.test:tst:1370"/>
+        <criterion comment="Test that the noconfigfiles behavior filters out config files." test_ref="oval:org.mitre.oval.test:tst:1942"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <rpmverifyfile_test check="all" check_existence="at_least_one_exists" comment="Test verifying all files in a package." id="oval:org.mitre.oval.test:tst:1531" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:org.mitre.oval.test:obj:1453"/>
+      <state state_ref="oval:org.mitre.oval.test:ste:1608"/>
+    </rpmverifyfile_test>
+    <rpmverifyfile_test check="all" check_existence="at_least_one_exists" comment="Test skipping a verification using a behavior." id="oval:org.mitre.oval.test:tst:1370" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:org.mitre.oval.test:obj:1484"/>
+      <state state_ref="oval:org.mitre.oval.test:ste:1364"/>
+    </rpmverifyfile_test>
+    <rpmverifyfile_test check="all" check_existence="at_least_one_exists" comment="Test that the noconfigfiles behavior filters out config files." id="oval:org.mitre.oval.test:tst:1942" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:org.mitre.oval.test:obj:1292"/>
+      <state state_ref="oval:org.mitre.oval.test:ste:1597"/>
+    </rpmverifyfile_test>
+  </tests>
+  <objects>
+    <rpmverifyfile_object comment="Verify all files in the yum package." id="oval:org.mitre.oval.test:obj:1453" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>yum</name>
+      <filepath operation="pattern match"/>
+    </rpmverifyfile_object>
+    <rpmverifyfile_object comment="Verify files in the bash package, but skip md5" id="oval:org.mitre.oval.test:obj:1484" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <behaviors nofiledigest="true" nomode="true"/>
+      <name>bash</name>
+      <filepath operation="pattern match"/>
+    </rpmverifyfile_object>
+    <rpmverifyfile_object comment="Verify non-config files in the pam package." id="oval:org.mitre.oval.test:obj:1292" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <behaviors noconfigfiles="true" nodeps="true" nodigest="true" nofiles="false" noscripts="true" nosignature="true"/>
+      <name>pam</name>
+      <filepath operation="pattern match"/>
+    </rpmverifyfile_object>
+  </objects>
+  <states>
+    <rpmverifyfile_state comment="accepts files from the yum package" id="oval:org.mitre.oval.test:ste:1608" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>yum</name>
+    </rpmverifyfile_state>
+    <rpmverifyfile_state comment="accepts any files from the bash package where the md5 verification hasn't been performed" id="oval:org.mitre.oval.test:ste:1364" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>bash</name>
+      <md5_differs>pass</md5_differs>
+      <filepath operation="pattern match"/>
+    </rpmverifyfile_state>
+    <rpmverifyfile_state comment="accepts any non-config files from the pam package" id="oval:org.mitre.oval.test:ste:1597" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>pam</name>
+      <filepath operation="pattern match"/>
+      <configuration_file datatype="boolean">false</configuration_file>
+    </rpmverifyfile_state>
+  </states>
+</oval_definitions>

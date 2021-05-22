@@ -1,0 +1,1 @@
+These files and related OVAL xmls were taken from https://github.com/OVALProject/Test-Content

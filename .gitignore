@@ -1,0 +1,14 @@
+/target/
+/nbproject/
+/.idea/
+/vulniq-security-analyzer.iml
+/vulniq-security-scanner.iml
+/nb-configuration.xml
+/-Dsonar.host.url
+/-Dsonar.projectkey
+/.vscode/
+/.settings/
+/.project
+/.classpath
+/.factorypath
+/terzi.iml

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd    http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+  <generator>
+    <oval:schema_version>5.10.1</oval:schema_version>
+    <oval:timestamp>2009-05-21T11:46:00-04:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+  <definitions>
+    <definition id="oval:org.mitre.oval.test:def:970" version="1" class="miscellaneous">
+      <metadata>
+        <title>Evaluate to true if arithmetic operations are properly supported</title>
+        <description>This definition is intended to evaluate to true if the interpreter properly supports all of the valid arithmetic operations.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Test that the arithmetic function is supported with the add operation and two integer values." test_ref="oval:org.mitre.oval.test:tst:341"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <variable_test id="oval:org.mitre.oval.test:tst:341" version="1" comment="Test that the arithmetic function is supported with the add operation and two integer values." check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:org.mitre.oval.test:obj:896"/>
+    </variable_test>
+  </tests>
+  <objects>
+    <variable_object id="oval:org.mitre.oval.test:obj:896" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <var_ref>oval:org.mitre.oval.test:var:807</var_ref>
+    </variable_object>
+  </objects>
+  <variables>
+        <local_variable comment="All required MIB commands" datatype="string" id="oval:org.mitre.oval.test:var:807" version="1">
+            <unique>
+                <concat>
+                    <literal_component>start</literal_component>
+                    <variable_component var_ref="oval:org.cisecurity:var:383" />
+                    <literal_component />
+                    <variable_component var_ref="oval:org.cisecurity:var:153" />
+                    <literal_component>end</literal_component>
+                </concat>
+            </unique>
+        </local_variable>
+        <constant_variable comment="MIB tree names" datatype="string" id="oval:org.cisecurity:var:383" version="1">
+            <value>2</value>
+            <value>3</value>
+            <value>4</value>
+            <value>5</value>
+            <value>6</value>
+            <value>7</value>
+            <value>8</value>
+            <value>2</value>
+            <value>3</value>
+        </constant_variable>
+        <constant_variable comment="MIB tree names" datatype="string" id="oval:org.cisecurity:var:153" version="1">
+            <value>6</value>
+            <value>7</value>
+        </constant_variable>
+  </variables>
+</oval_definitions>

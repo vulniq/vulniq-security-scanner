@@ -31,13 +31,14 @@ Terzi uses operating system commands to collect data and when scanning docker co
 ## OVAL Support
 
 Terzi contains an Open Vulnerability and Assessment Language, OVAL, definition evaluator/interpreter. 
-OVAL evaluator supports a limited number of OVAL objects and tests. It is primarily intended for  
+OVAL evaluator supports a limited number of OVAL objects and tests. It is primarily intended for running OVAL definitions published by Linux vendors. 
+Windows support is still under development. 
 
 # Known Issues
 
   - Windows support is still under development and may be considered experimental
   - Finding files using regular expressions, i.e OVAL Unix File Objects, does not generate accurate results when dealing with symbolic links.
-  - OVAL variable support is limited. Some object type implementations do not support resolving OVAL variable references yet.
+  - OVAL variable support is limited. Some object type implementations do not support resolving OVAL variable references, yet.
   - Do NOT run OVAL definitions from untrusted sources. Since Terzi uses operating system commands, 
     just in case malicious OVAL definitions might be used as an attack vector. Terzi takes necessary precautions against such attacks but 
     it's better not to run OVAL definitios from untrusted sources just in case. 

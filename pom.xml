@@ -7,7 +7,7 @@
 
     <groupId>com.vulniq.client</groupId>
     <artifactId>terzi</artifactId>
-    <version>0.9.5</version>
+    <version>0.9.5-1</version>
     <packaging>jar</packaging>
     <name>terzi</name>
 
